@@ -1,0 +1,53 @@
+﻿@model IEnumerable<DataLayer.Products>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutDefault.cshtml";
+}
+
+<h2>Index</h2>
+
+
+<a href="/Admin/Products/Create" class="btn btn-success">Create New</a>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="~/Images/ProductImages/Thumb/@item.ImageName" class="thumbnail" alt="Product Image" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+
+                <a href="/Admin/Products/Edit/@item.ProductID" class="btn btn-warning btn-xs">Edit</a>
+                <a href="/Admin/Products/Delete/@item.ProductID" class="btn btn-danger btn-xs">Delete</a>
+
+            </td>
+        </tr>
+    }
+
+</table>

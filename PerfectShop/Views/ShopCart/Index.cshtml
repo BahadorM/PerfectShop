@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="shopCart">
+    @Html.Action("Order", "ShopCart")
+</div>
+
+@section Slider
+    {
+    <div class="page-heading products-heading header-text">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="text-content">
+                        <h4>new arrivals</h4>
+                        <h2>sixteen products</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+@section scripts{
+    <script>
+
+        $(function () {
+            CountShopCart();
+        });
+
+        function CountShopCart() {
+            $.get("/Api/Shop", function (result) {
+                $("#ShopCartCount").html(result);
+            });
+        }
+
+        function commandOrder(id, count) {
+            $.ajax({
+                url: "/ShopCart/CommandOrder/" + id,
+                type: "Get",
+                data: { count:count }
+            }).done(function (result) {
+                $("#shopCart").html(result);
+                CountShopCart();
+            });
+
+        }
+
+
+    </script>
+    
+    }

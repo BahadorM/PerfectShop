@@ -1,0 +1,12 @@
+﻿@model DataLayer.Users
+@using System.Configuration
+
+
+<h2>Dear @Model.UserName</h2>
+<div class="alert alert-success">
+    <p>Thanks for Nothing</p>
+    <p>Click on this <a href="@ConfigurationManager.AppSettings["MyDomain"]/Accuont/RecoveryPassword/@Model.UserID">link</a> to recovery your pass </p>
+</div>
+
+
+

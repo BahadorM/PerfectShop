@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutDefault.cshtml";
+}
+
+<h2>Product Groups</h2>
+
+<p>
+    <a onclick="Create()" class="btn btn-success">Add Group</a>
+</p>
+
+<div id="ListGroup">
+    @Html.Action("ListGroup")
+</div>
+
+
+<div class="modal" id="MyModal" tabindex="-1" role="dialog" aria-hidden="false" >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalLable">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="ModalBody">
+                <p>Modal body text goes here.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        function Create() {
+            $.get("/Admin/ProductGroups/Create", function (result) {
+                $("#MyModal").modal();
+                $("#ModalLable").html("Create New Product Group");
+                $("#ModalBody").html(result);
+            });
+        }
+        function Create(id) {
+            $.get("/Admin/ProductGroups/Create/" + id, function (result) {
+                $("#MyModal").modal();
+                $("#ModalLable").html("Create New Product Group");
+                $("#ModalBody").html(result);
+            });
+        }
+        function Edit(id) {
+            $.get("/Admin/ProductGroups/Edit/" + id, function (result) {
+                $("#MyModal").modal();
+                $("#ModalLable").html("Edit Product Group");
+                $("#ModalBody").html(result);
+            });
+        }
+
+        function Delete(id) {
+            $.get("/Admin/ProductGroups/Delete/" + id, function (result) {
+                $("#MyModal").modal();
+                $("#ModalLable").html("Delete Group");
+                $("#ModalBody").html(result);
+
+            });
+        }
+
+
+        function Success() {
+
+            $("#MyModal").modal('hide');
+        }
+
+    </script>
+
+}

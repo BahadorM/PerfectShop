@@ -1,0 +1,43 @@
+﻿@model IEnumerable<DataLayer.ProductGroup>
+
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.GroupTitle)
+        </th>
+        <th>
+            SubGroups
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GroupTitle)
+            </td>
+            <td>
+                @if (item.SubGroups.Any())
+                {
+                <ul>
+                    @foreach (var Sub in item.SubGroups)
+                    {
+                        <li>@Sub.GroupTitle</li>
+                        <a class="btn btn-warning btn-xs" onclick="Edit(@Sub.GroupID)">Edit</a>
+                        <a class="btn btn-danger btn-xs" onclick="Delete(@Sub.GroupID)">Delete</a>
+                    }
+                </ul>
+                }
+            </td>
+            <td>
+                <a class="btn btn-info btn-xs" onclick="Create(@item.GroupID)">Add</a>
+                <a class="btn btn-warning btn-xs" onclick="Edit(@item.GroupID)">Edit</a>
+                <a class="btn btn-danger btn-xs" onclick="Delete(@item.GroupID)">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+

@@ -1,0 +1,10 @@
+﻿@model DataLayer.Users
+@using System.Configuration
+
+
+<h2>Dear @Model.UserName</h2>
+<div class="alert alert-success">
+    <p>Thanks for registering</p>
+    <p>Click on this <a href="@ConfigurationManager.AppSettings["MyDomain"]/Accuont/ActiveUser/@Model.AciveCode">link</a> to activate </p>
+</div>
+
